@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyrylo Kudrevych | AI & Data Science Engineer</title>
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+    
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --panel-bg: #1e293b;
+            --accent-green: #10b981;
+            --accent-hover: #059669;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --btn-text-dark: #0f172a; 
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: var(--panel-bg);
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .header-title p {
+            margin: 0.25rem 0 0 0;
+            color: var(--accent-green);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .header-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 1.25rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s;
+        }
+
+        .header-links a:hover {
+            color: var(--accent-green);
+        }
+
+        .btn-download {
+            background-color: var(--accent-green);
+            color: var(--btn-text-dark) !important;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-left: 1.5rem;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn-download:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .chat-panel {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .chat-history {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 1rem;
+            border-radius: 8px;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .message.bot {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            align-self: flex-start;
+            border-bottom-left-radius: 0;
+        }
+
+        .message.user {
+            background-color: var(--accent-green);
+            color: var(--btn-text-dark);
+            font-weight: 500;
+            align-self: flex-end;
+            border-bottom-right-radius: 0;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 0.8rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent-green);
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid var(--accent-green);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+        }
+
+        .project-link:hover {
+            background-color: var(--accent-green);
+            color: var(--btn-text-dark);
+        }
+
+        .suggestions {
+            padding: 0 1.5rem 1rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .chip {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .chip:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .input-area {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .input-area input {
+            flex: 1;
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .input-area input:focus {
+            border-color: var(--accent-green);
+        }
+
+        .input-area button {
+            background-color: var(--accent-green);
+            color: var(--btn-text-dark);
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .input-area button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-title">
+            <h1>Kyrylo Kudrevych</h1>
+            <p>AI & Data Science Engineer</p>
+        </div>
+        <div class="header-links">
+            <a href="https://github.com/Olat1337" target="_blank">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub
+            </a>
+            <a href="https://linkedin.com/in/kyrylo-kudrevych" target="_blank">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 0 .016-.025V6.169h-2.4c.03.674 0 7.225 0 7.225h2.4z"/></svg>LinkedIn
+            </a>
+            <a onclick="copyEmail(event)" id="email-link" style="cursor: pointer;">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/></svg>Email
+            </a>
+            <a href="Kyrylo Kudrevych CV.pdf" class="btn-download" target="_blank">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 2px;"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>Download CV
+            </a>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="chat-panel">
+            <div class="chat-history" id="chat-history">
+                <div class="message bot">
+                    <strong>Kyrylo's AI Clone:</strong><br><br>
+                    Hi there! 👋 Welcome to my interactive portfolio. I am a rule-based simulation of Kyrylo's credentials, mapping his exact background directly to your questions. <br><br>
+                    He is an AI & Data Science Engineer specializing in ML pipelines, RAG architectures, and data engineering. He is also NVIDIA DLI Certified.<br><br>
+                    What would you like to know about his background, skills, or portfolio projects?
+                </div>
+            </div>
+
+            <div class="suggestions" id="suggestions">
+                <div class="chip" onclick="sendSuggestion('What is the Rent Radar project?')">Poznań Rent Radar</div>
+                <div class="chip" onclick="sendSuggestion('Explain the Poker AI project')">Poker RAG AI</div>
+                <div class="chip" onclick="sendSuggestion('Tell me about the Video Game Sales Prediction project')">Game Sales Predictor</div>
+                <div class="chip" onclick="sendSuggestion('Tell me about your tech skills')">Tech Stack</div>
+                <div class="chip" onclick="sendSuggestion('Tell me about your work experience')">Work Experience</div>
+            </div>
+
+            <div class="input-area">
+                <input type="text" id="user-input" placeholder="Ask about Kyrylo's qualifications..." onkeypress="handleEnter(event)">
+                <button onclick="processInput()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyEmail(event) {
+            event.preventDefault();
+            const email = "kyrylo.kudrevych@gmail.com";
+            navigator.clipboard.writeText(email).then(() => {
+                const link = document.getElementById("email-link");
+                link.innerHTML = `<svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/></svg> Copied!`;
+                link.style.color = "var(--accent-green)";
+                
+                setTimeout(() => {
+                    link.innerHTML = `<svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/></svg> Email`;
+                    link.style.color = ""; 
+                }, 2000);
+            }).catch(err => {
+                console.error("Failed to copy email: ", err);
+            });
+        }
+
+        const knowledgeBase = {
+            "skills": "Here is an overview of Kyrylo's core technical stack:<br><br>• <strong>Languages:</strong> Python, SQL<br>• <strong>ML & AI:</strong> Scikit-Learn, PyTorch, LangChain, Ollama, HuggingFace, ChromaDB<br>• <strong>Data Engineering & Tools:</strong> Pandas, NumPy, FastAPI, Streamlit, Docker, Git, Linux, CI/CD<br><br>He focuses heavily on building scalable <strong>Python</strong> backends and deploying <strong>RAG/ML models</strong> into production.",
+            
+            "rent radar": "The <strong>Poznań Rent Radar</strong> is a Real Estate Valuation Engine. Here are the key technical details:<br><br>• <strong>Architecture:</strong> Full-stack ML microservice (FastAPI, Streamlit) deployed via Railway CI/CD.<br>• <strong>Data Pipeline:</strong> Real-time web scraping, JSON parsing, One-Hot Encoding, and log transformations.<br>• <strong>Model:</strong> Random Forest Regressor.<br>• <strong>Performance:</strong> Validation MAE of ~337 PLN.<br><br><div class='project-actions'><a href='https://github.com/Olat1337/poznan-rent-radar' target='_blank' class='project-link'>🐙 View on GitHub</a><a href='https://poznan-rent-radar-ui.up.railway.app/' target='_blank' class='project-link'>🚀 Live Demo</a></div>",
+            
+            "poker": "The <strong>Poker Tournament Judge AI</strong> is a RAG-Powered Rule Enforcer. Here are the key technical details:<br><br>• <strong>Objective:</strong> A hallucination-free AI referee resolving complex game disputes from the TDA rulebook.<br>• <strong>RAG Pipeline:</strong> LangChain, HuggingFace embeddings, and a ChromaDB vector store.<br>• <strong>Execution:</strong> 100% local, privacy-first environment via Ollama.<br>• <strong>Interface:</strong> Async Telegram bot (aiogram) with multi-tenant memory.<br><br><div class='project-actions'><a href='https://github.com/Olat1337/poker-judge' target='_blank' class='project-link'>🐙 View on GitHub</a></div>",
+            
+            "video game": "The <strong>Global Video Game Sales Predictor</strong> is a predictive analytics pipeline estimating global sales volume. Here are the key technical details:<br><br>• <strong>Modeling:</strong> Benchmarked a baseline Linear Regression against a constrained Random Forest Regressor.<br>• <strong>Analysis:</strong> Evaluated non-linear relationships from categorical industry data.<br>• <strong>Visualization:</strong> Designed log-scale scatter plots (±2x error bands) to visually demonstrate decision tree limitations on massive industry outliers.<br><br><div class='project-actions'><a href='https://github.com/Olat1337/video-game-sales-prediction' target='_blank' class='project-link'>🐙 View on GitHub</a></div>",
+            
+            "experience": "Kyrylo's experience includes two targeted research groups:<br><br>1. <strong>ML & Data Science Researcher</strong> at GHOST (Oct 2025 - Mar 2026), where he maintained robust data pipelines using Python (Pandas, NumPy) and SQL, and designed Deep Learning models with PyTorch.<br><br>2. <strong>Machine Learning & Data Science Member</strong> at KNBI (Oct 2024 - Oct 2025), applying Scikit-Learn algorithms to complex biological datasets and engineering visualizations via Matplotlib/Seaborn.",
+            
+            "education": "He is currently pursuing a B.Sc. in Bioinformatics at Poznan University of Technology (Oct 2024 - Present).",
+            
+            "certifications": "Kyrylo holds an <strong>NVIDIA DLI (Deep Learning)</strong> certification, alongside a <strong>Kaggle Data Science & Machine Learning Specialization</strong> covering Advanced SQL, Intermediate ML, and Time Series.",
+            
+            "contact": "You can reach Kyrylo directly at <strong>kyrylo.kudrevych@gmail.com</strong> or call him at <strong>+48 532 629 018</strong>. His LinkedIn profile is located at linkedin.com/in/kyrylo-kudrevych/."
+        };
+
+        const chatHistory = document.getElementById('chat-history');
+        const userInput = document.getElementById('user-input');
+
+        function appendMessage(sender, text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${sender}`;
+            msgDiv.innerHTML = text.replace(/\n/g, '<br>');
+            chatHistory.appendChild(msgDiv);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+
+        function findAnswer(query) {
+            const q = query.toLowerCase();
+            
+            if (q.includes('skill') || q.includes('stack') || q.includes('tools') || q.includes('technologies')) return knowledgeBase['skills'];
+            if (q.includes('rent') || q.includes('radar') || q.includes('real estate')) return knowledgeBase['rent radar'];
+            if (q.includes('poker') || q.includes('rag') || q.includes('referee') || q.includes('bot')) return knowledgeBase['poker'];
+            if (q.includes('game') || q.includes('sales') || q.includes('predict') || q.includes('video')) return knowledgeBase['video game'];
+            if (q.includes('experience') || q.includes('work') || q.includes('job') || q.includes('ghost') || q.includes('knbi') || q.includes('club')) return knowledgeBase['experience'];
+            if (q.includes('education') || q.includes('university') || q.includes('degree') || q.includes('put')) return knowledgeBase['education'];
+            if (q.includes('certif') || q.includes('nvidia') || q.includes('kaggle')) return knowledgeBase['certifications'];
+            if (q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('hire')) return knowledgeBase['contact'];
+            
+            return "I operate via an index of Kyrylo's actual resume. Could you please check out his <strong>skills</strong>, <strong>work experience</strong>, <strong>certifications</strong>, or one of his core projects (<strong>Rent Radar</strong>, <strong>Poker AI</strong>, or <strong>Game Sales Predictor</strong>)?";
+        }
+
+        function processInput() {
+            const text = userInput.value.trim();
+            if (!text) return;
+
+            appendMessage('user', text);
+            userInput.value = '';
+
+            setTimeout(() => {
+                const response = findAnswer(text);
+                appendMessage('bot', `<strong>Kyrylo's AI:</strong><br><br>${response}`);
+            }, 400); 
+        }
+
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                processInput();
+            }
+        }
+
+        function sendSuggestion(text) {
+            userInput.value = text;
+            processInput();
+        }
+    </script>
+</body>
+</html>
