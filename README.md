@@ -1,14 +1,14 @@
-# 🤖 Interactive AI Clone Portfolio
+# 🤖 Interactive Portfolio
 
-A unique, interactive personal portfolio designed as an AI chat interface. Instead of scrolling through a traditional static resume, visitors can "chat" with a rule-based simulation of my credentials to learn about my skills, projects, and work experience.
+An interactive personal portfolio designed as an AI chat interface. Instead of scrolling through a traditional static resume, visitors can "chat" with a rule-based simulation of my credentials to learn about my skills, projects, and work experience.
 
 🔗 **Live Portfolio:** https://kyrylo-kudrevych-portfolio.up.railway.app/
 
 ## 🎯 Project Overview
-This project serves as my digital business card as an AI & Data Science Engineer. I wanted a portfolio that reflects my field of work, so I built a responsive, dark-themed chatbot UI. It uses pattern matching to map user queries directly to my actual resume details, providing a fast, engaging, and personalized way to view my background.
+This project serves as my digital business card. As a Bioinformatics student at Poznan University of Technology focused on machine learning and data application development, I wanted a portfolio that reflects my technical interests. I built a responsive, dark-themed chatbot UI that uses pattern matching to map user queries directly to my actual resume details, providing a fast and engaging way to view my background and my search for a 2026/2027 Data/SWE Internship.
 
 ## ✨ Key Features
-* **Rule-Based Chatbot:** Instantly parses user input to return relevant information about my tech stack, education, and specific projects (like the Poker RAG AI or Rent Radar).
+* **Rule-Based Chatbot:** Instantly parses user input to return relevant information about my tech stack, education, and specific projects (like the Poker RAG AI or Poznań Rent Radar).
 * **Interactive UI:** Includes quick-action suggestion chips to guide visitors who aren't sure what to ask.
 * **Zero Dependencies:** Built entirely from scratch without heavy frontend frameworks to ensure instant load times.
 * **Fully Responsive:** Optimized for both desktop and mobile viewing with a sleek, IDE-inspired dark mode.
