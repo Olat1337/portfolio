@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kyrylo Kudrevych | AI & Data Science Engineer</title>
+    <title>Kyrylo Kudrevych | Bioinformatics Student | Data & Software Engineering</title>
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
     
@@ -289,7 +289,7 @@
     <header>
         <div class="header-title">
             <h1>Kyrylo Kudrevych</h1>
-            <p>AI & Data Science Engineer</p>
+            <p>Bioinformatics Student @ PUT | Data & Software Engineering</p>
         </div>
         <div class="header-links">
             <a href="https://github.com/Olat1337" target="_blank">
@@ -298,7 +298,7 @@
             <a href="https://linkedin.com/in/kyrylo-kudrevych" target="_blank">
                 <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 0 .016-.025V6.169h-2.4c.03.674 0 7.225 0 7.225h2.4z"/></svg>LinkedIn
             </a>
-            <a onclick="copyEmail(event)" id="email-link" style="cursor: pointer;">
+            <a href="mailto:kyrylo.kudrevych@gmail.com" id="email-link">
                 <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/></svg>Email
             </a>
             <a href="Kyrylo Kudrevych CV.pdf" class="btn-download" target="_blank">
@@ -311,19 +311,21 @@
         <div class="chat-panel">
             <div class="chat-history" id="chat-history">
                 <div class="message bot">
-                    <strong>Kyrylo's AI Clone:</strong><br><br>
-                    Hi there! 👋 Welcome to my interactive portfolio. I am a rule-based simulation of Kyrylo's credentials, mapping his exact background directly to your questions. <br><br>
-                    He is an AI & Data Science Engineer specializing in ML pipelines, RAG architectures, and data engineering. He is also NVIDIA DLI Certified.<br><br>
-                    What would you like to know about his background, skills, or portfolio projects?
+                    <strong>Kyrylo's AI:</strong><br><br>
+                    Hi there! 👋 I'm basically a fast-talking, interactive version of Kyrylo's resume. He built me so you don't have to read a boring PDF (though you can download it up top!).<br><br>
+                    Kyrylo is a Bioinformatics student at Poznan University of Technology focused on machine learning and data application development. He learns by building complete projects and deploying them as working applications!<br><br>
+                    Most importantly: he's actively looking for a Data, Machine Learning, or SWE Internship for 2026/2027 (open to Poland and remote EU)!<br><br>
+                    What do you want to know? Try clicking a suggestion below!
                 </div>
             </div>
 
             <div class="suggestions" id="suggestions">
                 <div class="chip" onclick="sendSuggestion('What is the Rent Radar project?')">Poznań Rent Radar</div>
                 <div class="chip" onclick="sendSuggestion('Explain the Poker AI project')">Poker RAG AI</div>
-                <div class="chip" onclick="sendSuggestion('Tell me about the Video Game Sales Prediction project')">Game Sales Predictor</div>
                 <div class="chip" onclick="sendSuggestion('Tell me about your tech skills')">Tech Stack</div>
-                <div class="chip" onclick="sendSuggestion('Tell me about your work experience')">Work Experience</div>
+                <div class="chip" onclick="sendSuggestion('Tell me about your work experience')">Experience</div>
+                <div class="chip" onclick="sendSuggestion('What certifications do you have?')">Certifications</div>
+                <div class="chip" onclick="sendSuggestion('How can I contact Kyrylo?')">Contact</div>
             </div>
 
             <div class="input-area">
@@ -334,39 +336,20 @@
     </div>
 
     <script>
-        function copyEmail(event) {
-            event.preventDefault();
-            const email = "kyrylo.kudrevych@gmail.com";
-            navigator.clipboard.writeText(email).then(() => {
-                const link = document.getElementById("email-link");
-                link.innerHTML = `<svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/></svg> Copied!`;
-                link.style.color = "var(--accent-green)";
-                
-                setTimeout(() => {
-                    link.innerHTML = `<svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/></svg> Email`;
-                    link.style.color = ""; 
-                }, 2000);
-            }).catch(err => {
-                console.error("Failed to copy email: ", err);
-            });
-        }
-
         const knowledgeBase = {
-            "skills": "Here is an overview of Kyrylo's core technical stack:<br><br>• <strong>Languages:</strong> Python, SQL<br>• <strong>ML & AI:</strong> Scikit-Learn, PyTorch, LangChain, Ollama, HuggingFace, ChromaDB<br>• <strong>Data Engineering & Tools:</strong> Pandas, NumPy, FastAPI, Streamlit, Docker, Git, Linux, CI/CD<br><br>He focuses heavily on building scalable <strong>Python</strong> backends and deploying <strong>RAG/ML models</strong> into production.",
+            "skills": "Kyrylo doesn't just collect logos; he actually builds with these:<br><br>• <strong>Programming:</strong> Python, SQL <br>• <strong>Data & ML:</strong> Scikit-Learn, PyTorch, Pandas, NumPy, Matplotlib, Seaborn <br>• <strong>AI & LLM:</strong> LangChain, ChromaDB, Ollama, HuggingFace <br>• <strong>Backend & DevOps:</strong> FastAPI, Streamlit, Docker, Git, Linux<br><br>He focuses heavily on building scalable backends and deploying ML models.",
             
-            "rent radar": "The <strong>Poznań Rent Radar</strong> is a Real Estate Valuation Engine. Here are the key technical details:<br><br>• <strong>Architecture:</strong> Full-stack ML microservice (FastAPI, Streamlit) deployed via Railway CI/CD.<br>• <strong>Data Pipeline:</strong> Real-time web scraping, JSON parsing, One-Hot Encoding, and log transformations.<br>• <strong>Model:</strong> Random Forest Regressor.<br>• <strong>Performance:</strong> Validation MAE of ~337 PLN.<br><br><div class='project-actions'><a href='https://github.com/Olat1337/poznan-rent-radar' target='_blank' class='project-link'>🐙 View on GitHub</a><a href='https://poznan-rent-radar-ui.up.railway.app/' target='_blank' class='project-link'>🚀 Live Demo</a></div>",
+            "rent radar": "<strong>Poznań Rent Radar</strong> is a rent price estimator for the Poznań market that scrapes live listings.<br><br>• <strong>The Model & Engineering Choice:</strong> He trained a Random Forest model reaching a validation MAE of ~337 PLN. He specifically chose Random Forest over linear models after benchmarking on log-transformed prices to effectively handle non-linear feature interactions.<br>• <strong>Deployment:</strong> It serves predictions through a FastAPI backend with a Streamlit UI, fully deployed with CI/CD on Railway.<br><br><div class='project-actions'><a href='https://github.com/Olat1337/poznan-rent-radar' target='_blank' class='project-link'>🐙 View Code</a><a href='https://poznan-rent-radar-ui.up.railway.app/' target='_blank' class='project-link'>🚀 Live Demo</a></div>",
             
-            "poker": "The <strong>Poker Tournament Judge AI</strong> is a RAG-Powered Rule Enforcer. Here are the key technical details:<br><br>• <strong>Objective:</strong> A hallucination-free AI referee resolving complex game disputes from the TDA rulebook.<br>• <strong>RAG Pipeline:</strong> LangChain, HuggingFace embeddings, and a ChromaDB vector store.<br>• <strong>Execution:</strong> 100% local, privacy-first environment via Ollama.<br>• <strong>Interface:</strong> Async Telegram bot (aiogram) with multi-tenant memory.<br><br><div class='project-actions'><a href='https://github.com/Olat1337/poker-judge' target='_blank' class='project-link'>🐙 View on GitHub</a></div>",
+            "poker": "<strong>Poker Tournament Judge</strong> is offline RAG application with streamlit Web UI interface and an async Telegram bot that answers rule disputes based on the official TDA rulebook.<br><br>• <strong>The Stack:</strong> Built using LangChain, Llama 3, and ChromaDB.<br>• <strong>Engineering Choice:</strong> He selected local inference via Ollama over API-based models to keep the system fully offline and free of per-request costs. This means all responses are strictly grounded in retrieved rule citations with absolute privacy.<br><br><div class='project-actions'><a href='https://github.com/Olat1337/poker-judge' target='_blank' class='project-link'>🐙 View Code</a></div>",
             
-            "video game": "The <strong>Global Video Game Sales Predictor</strong> is a predictive analytics pipeline estimating global sales volume. Here are the key technical details:<br><br>• <strong>Modeling:</strong> Benchmarked a baseline Linear Regression against a constrained Random Forest Regressor.<br>• <strong>Analysis:</strong> Evaluated non-linear relationships from categorical industry data.<br>• <strong>Visualization:</strong> Designed log-scale scatter plots (±2x error bands) to visually demonstrate decision tree limitations on massive industry outliers.<br><br><div class='project-actions'><a href='https://github.com/Olat1337/video-game-sales-prediction' target='_blank' class='project-link'>🐙 View on GitHub</a></div>",
+            "experience": "He gets hands-on experience through university research groups:<br><br>• <strong>GHOST Data Science Section:</strong> <br>&nbsp&nbsp&nbsp&nbspBuilds classification and regression models using Scikit-Learn and PyTorch, and <br>&nbsp&nbsp&nbsp&nbspwrites data-cleaning validation scripts in Python (Pandas/NumPy) and SQL.<br>• <strong>KNBI Bioinformatics Association:</strong><br>&nbsp&nbsp&nbsp&nbspApplies Scikit-Learn algorithms to biological datasets and visualizes high-dimensional <br>&nbsp&nbsp&nbsp&nbspdata using Matplotlib and Seaborn.",
             
-            "experience": "Kyrylo's experience includes two targeted research groups:<br><br>1. <strong>ML & Data Science Researcher</strong> at GHOST (Oct 2025 - Mar 2026), where he maintained robust data pipelines using Python (Pandas, NumPy) and SQL, and designed Deep Learning models with PyTorch.<br><br>2. <strong>Machine Learning & Data Science Member</strong> at KNBI (Oct 2024 - Oct 2025), applying Scikit-Learn algorithms to complex biological datasets and engineering visualizations via Matplotlib/Seaborn.",
+            "education": "He is currently pursuing his B.Sc. in Bioinformatics at Poznan University of Technology (expected Apr 2028).",
             
-            "education": "He is currently pursuing a B.Sc. in Bioinformatics at Poznan University of Technology (Oct 2024 - Present).",
+            "certifications": "Kyrylo is <strong>NVIDIA DLI Certified</strong> in Fundamentals of Deep Learning (2025). He also completed Kaggle certifications in Advanced SQL, Intermediate ML, and Time Series (2026).",
             
-            "certifications": "Kyrylo holds an <strong>NVIDIA DLI (Deep Learning)</strong> certification, alongside a <strong>Kaggle Data Science & Machine Learning Specialization</strong> covering Advanced SQL, Intermediate ML, and Time Series.",
-            
-            "contact": "You can reach Kyrylo directly at <strong>kyrylo.kudrevych@gmail.com</strong> or call him at <strong>+48 532 629 018</strong>. His LinkedIn profile is located at linkedin.com/in/kyrylo-kudrevych/."
+            "contact": "Want to talk about that 2026/2027 internship?<br><br>Drop him an email at <strong>kyrylo.kudrevych@gmail.com</strong> or call <strong>+48 532 629 018</strong>.<br>You can also click the LinkedIn or Email buttons at the top of the page!"
         };
 
         const chatHistory = document.getElementById('chat-history');
@@ -386,13 +369,12 @@
             if (q.includes('skill') || q.includes('stack') || q.includes('tools') || q.includes('technologies')) return knowledgeBase['skills'];
             if (q.includes('rent') || q.includes('radar') || q.includes('real estate')) return knowledgeBase['rent radar'];
             if (q.includes('poker') || q.includes('rag') || q.includes('referee') || q.includes('bot')) return knowledgeBase['poker'];
-            if (q.includes('game') || q.includes('sales') || q.includes('predict') || q.includes('video')) return knowledgeBase['video game'];
-            if (q.includes('experience') || q.includes('work') || q.includes('job') || q.includes('ghost') || q.includes('knbi') || q.includes('club')) return knowledgeBase['experience'];
+            if (q.includes('experience') || q.includes('work') || q.includes('job') || q.includes('ghost') || q.includes('knbi')) return knowledgeBase['experience'];
             if (q.includes('education') || q.includes('university') || q.includes('degree') || q.includes('put')) return knowledgeBase['education'];
             if (q.includes('certif') || q.includes('nvidia') || q.includes('kaggle')) return knowledgeBase['certifications'];
-            if (q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('hire')) return knowledgeBase['contact'];
+            if (q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('hire') || q.includes('internship')) return knowledgeBase['contact'];
             
-            return "I operate via an index of Kyrylo's actual resume. Could you please check out his <strong>skills</strong>, <strong>work experience</strong>, <strong>certifications</strong>, or one of his core projects (<strong>Rent Radar</strong>, <strong>Poker AI</strong>, or <strong>Game Sales Predictor</strong>)?";
+            return "I operate via an index of Kyrylo's actual resume. Could you please check out his <strong>skills</strong>, <strong>experience</strong>, <strong>certifications</strong>, or one of his core projects (<strong>Rent Radar</strong> or <strong>Poker AI</strong>). \nTry clicking a suggestion below!";
         }
 
         function processInput() {
