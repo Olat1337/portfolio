@@ -9,21 +9,28 @@
     
     <style>
         :root {
-            --bg-dark: #0f172a;
-            --panel-bg: #1e293b;
-            --accent-green: #10b981;
-            --accent-hover: #059669;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #334155;
-            --btn-text-dark: #0f172a; 
+            --bg-base: #06020a;
+            --bg-gradient-center: #160a28;
+            --panel-bg: rgba(20, 10, 35, 0.6);
+            --panel-backdrop: blur(10px);
+
+            --accent-primary: #9d7cff;
+            --accent-glow: rgba(157, 124, 255, 0.4);
+            --accent-hover: #b89eff;
+            
+            --text-main: #f4f0ff;
+            --text-muted: #9587a8;
+            
+            --border-color: #2e1d47;
+            --btn-bg: #0d0614;
         }
 
         body, html {
             margin: 0;
             padding: 0;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-dark);
+            background-color: var(--bg-base);
+            background-image: radial-gradient(circle at 50% 30%, var(--bg-gradient-center) 0%, var(--bg-base) 70%);
             color: var(--text-main);
             height: 100vh;
             display: flex;
@@ -31,9 +38,9 @@
         }
 
         header {
-            background-color: var(--panel-bg);
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid var(--border-color);
+            background-color: transparent;
+            padding: 2rem;
+            border-bottom: 1px solid rgba(46, 29, 71, 0.3);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -41,15 +48,16 @@
 
         .header-title h1 {
             margin: 0;
-            font-size: 1.5rem;
+            font-size: 1.7rem;
             color: var(--text-main);
+            letter-spacing: -0.5px;
         }
 
         .header-title p {
-            margin: 0.25rem 0 0 0;
-            color: var(--accent-green);
-            font-size: 0.9rem;
-            font-weight: 600;
+            margin: 0.4rem 0 0 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 400;
         }
 
         .header-links {
@@ -60,226 +68,238 @@
         .header-links a {
             color: var(--text-muted);
             text-decoration: none;
-            margin-left: 1.25rem;
+            margin-left: 1.5rem;
             font-size: 0.9rem;
             display: flex;
             align-items: center;
-            gap: 0.4rem;
-            transition: color 0.2s;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
         }
 
         .header-links a:hover {
-            color: var(--accent-green);
+            color: var(--text-main);
+            transform: translateY(-1px);
         }
 
         .btn-download {
-            background-color: var(--accent-green);
-            color: var(--btn-text-dark) !important;
+            background-color: var(--btn-bg);
+            color: var(--text-main) !important;
             padding: 0.6rem 1.2rem;
-            border-radius: 6px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 600;
             margin-left: 1.5rem;
-            transition: background 0.2s, transform 0.1s;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .btn-download:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-1px);
+            background-color: rgba(157, 124, 255, 0.1);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 15px var(--accent-glow);
+            transform: translateY(-2px);
         }
 
         .main-container {
             flex: 1;
             display: flex;
             justify-content: center;
+            align-items: center;
             padding: 2rem;
             overflow: hidden;
         }
 
         .chat-panel {
             background-color: var(--panel-bg);
+            backdrop-filter: var(--panel-backdrop);
+            -webkit-backdrop-filter: var(--panel-backdrop);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 16px;
             width: 100%;
-            max-width: 800px;
+            max-width: 1000px;
+            height: 75vh; 
             display: flex;
             flex-direction: column;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            overflow: hidden; 
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
         }
 
         .chat-history {
-            flex: 1;
-            padding: 1.5rem;
+            flex: 1 1 0; 
             overflow-y: auto;
+            position: relative;
+        }
+
+        .chat-history-inner {
+            padding: 2rem;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
         .message {
-            max-width: 80%;
-            padding: 1rem;
-            border-radius: 8px;
-            line-height: 1.5;
+            flex: 0 0 auto;
+            max-width: 85%;
+            padding: 1.2rem;
+            border-radius: 12px;
+            line-height: 1.6;
             font-size: 0.95rem;
+            letter-spacing: 0.2px;
         }
 
         .message.bot {
-            background-color: var(--bg-dark);
+            background-color: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border-color);
             align-self: flex-start;
-            border-bottom-left-radius: 0;
+            border-bottom-left-radius: 4px;
         }
 
         .message.user {
-            background-color: var(--accent-green);
-            color: var(--btn-text-dark);
-            font-weight: 500;
+            background: linear-gradient(135deg, #372061, #1e1136);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-weight: 400;
             align-self: flex-end;
-            border-bottom-right-radius: 0;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .project-actions {
             display: flex;
-            gap: 10px;
-            margin-top: 0.8rem;
+            gap: 12px;
+            margin-top: 1.5rem;
             flex-wrap: wrap;
         }
 
         .project-link {
             display: inline-flex;
             align-items: center;
-            color: var(--accent-green);
+            color: var(--text-main);
+            background-color: var(--btn-bg);
             text-decoration: none;
-            font-weight: 600;
-            border: 1px solid var(--accent-green);
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            transition: all 0.2s;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
             font-size: 0.85rem;
         }
 
         .project-link:hover {
-            background-color: var(--accent-green);
-            color: var(--btn-text-dark);
+            border-color: var(--accent-primary);
+            background-color: rgba(157, 124, 255, 0.1);
+            box-shadow: 0 0 10px var(--accent-glow);
         }
 
         .suggestions {
-            padding: 0 1.5rem 1rem 1.5rem;
+            flex: 0 0 auto;
+            padding: 1rem 2rem 1.5rem 2rem;
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.8rem;
         }
 
         .chip {
-            background-color: var(--bg-dark);
+            background-color: var(--btn-bg);
             border: 1px solid var(--border-color);
             color: var(--text-muted);
-            padding: 0.4rem 0.8rem;
+            padding: 0.6rem 1.2rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
         }
 
         .chip:hover {
-            border-color: var(--accent-green);
-            color: var(--accent-green);
+            border-color: var(--accent-primary);
+            color: var(--text-main);
+            background-color: rgba(157, 124, 255, 0.05);
+            box-shadow: 0 0 8px var(--accent-glow);
         }
 
         .input-area {
-            padding: 1.5rem;
+            flex: 0 0 auto;
+            padding: 1.5rem 2rem;
             border-top: 1px solid var(--border-color);
             display: flex;
             gap: 1rem;
+            background-color: rgba(0, 0, 0, 0.2);
         }
 
         .input-area input {
             flex: 1;
-            background-color: var(--bg-dark);
+            background-color: var(--btn-bg);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 0.8rem 1rem;
-            border-radius: 6px;
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
             font-size: 1rem;
             outline: none;
             min-width: 0;
+            transition: border-color 0.2s ease;
         }
 
         .input-area input:focus {
-            border-color: var(--accent-green);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 2px var(--accent-glow);
+        }
+
+        .input-area input::placeholder {
+            color: var(--text-muted);
         }
 
         .input-area button {
-            background-color: var(--accent-green);
-            color: var(--btn-text-dark);
+            background-color: var(--text-main);
+            color: var(--bg-base);
             border: none;
-            padding: 0 1.5rem;
-            border-radius: 6px;
-            font-weight: bold;
+            padding: 0 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.2s ease;
         }
 
         .input-area button:hover {
             background-color: var(--accent-hover);
+            transform: translateY(-1px);
         }
 
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
-                padding: 1rem;
-                gap: 1.2rem;
+                padding: 1.5rem;
+                gap: 1.5rem;
                 text-align: center;
             }
-
             .header-links {
                 flex-wrap: wrap;
                 justify-content: center;
                 gap: 1rem;
             }
-
-            .header-links a {
-                margin-left: 0;
-            }
-
+            .header-links a { margin-left: 0; }
             .btn-download {
                 margin-left: 0;
                 width: 100%;
-                text-align: center;
-                display: flex;
                 justify-content: center;
             }
-
-            .main-container {
-                padding: 1rem;
-            }
-
-            .chat-history {
-                padding: 1rem;
-            }
-
-            .message {
-                max-width: 95%;
-            }
-
+            .main-container { padding: 1rem; }
+            .chat-panel { height: 85vh; }
+            .chat-history-inner { padding: 1rem; }
+            .message { max-width: 95%; }
             .suggestions {
                 padding: 0 1rem 1rem 1rem;
                 justify-content: center;
             }
-
             .input-area {
                 padding: 1rem;
                 gap: 0.5rem;
-            }
-
-            .input-area button {
-                padding: 0 1rem;
             }
         }
     </style>
@@ -302,20 +322,23 @@
                 <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/></svg>Email
             </a>
             <a href="Kyrylo Kudrevych CV.pdf" class="btn-download" target="_blank">
-                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 2px;"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>Download CV
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 4px;"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>Download CV
             </a>
         </div>
     </header>
 
     <div class="main-container">
         <div class="chat-panel">
-            <div class="chat-history" id="chat-history">
-                <div class="message bot">
-                    <strong>Kyrylo's AI:</strong><br><br>
-                    Hi there! 👋 I'm basically a fast-talking, interactive version of Kyrylo's resume. He built me so you don't have to read a boring PDF (though you can download it up top!).<br><br>
-                    Kyrylo is a Bioinformatics student at Poznan University of Technology focused on machine learning and data application development. He learns by building complete projects and deploying them as working applications!<br><br>
-                    Most importantly: he's actively looking for a Data, Machine Learning, or SWE Internship for 2026/2027 (open to Poland and remote EU)!<br><br>
-                    What do you want to know? Try clicking a suggestion below!
+            
+            <div class="chat-history" id="chat-window">
+                <div class="chat-history-inner" id="chat-inner">
+                    <div class="message bot">
+                        <strong style="color: var(--accent-primary);">Kyrylo's AI:</strong><br><br>
+                        Hi there! 👋 I'm basically a fast-talking, interactive version of Kyrylo's resume. He built me so you don't have to read a boring PDF (though you can download it up top!).<br><br>
+                        Kyrylo is a Bioinformatics student at Poznan University of Technology focused on machine learning and data application development. He learns by building complete projects and deploying them as working applications!<br><br>
+                        Most importantly: he's actively looking for a Data, Machine Learning, or SWE Internship for 2026/2027 (open to Poland and remote EU)!<br><br>
+                        What do you want to know? Try clicking a suggestion below!
+                    </div>
                 </div>
             </div>
 
@@ -339,7 +362,7 @@
         const knowledgeBase = {
             "skills": "Kyrylo doesn't just collect logos; he actually builds with these:<br><br>• <strong>Programming:</strong> Python, SQL <br>• <strong>Data & ML:</strong> Scikit-Learn, PyTorch, Pandas, NumPy, Matplotlib, Seaborn <br>• <strong>AI & LLM:</strong> LangChain, ChromaDB, Ollama, HuggingFace <br>• <strong>Backend & DevOps:</strong> FastAPI, Streamlit, Docker, Git, Linux<br><br>He focuses heavily on building scalable backends and deploying ML models.",
             
-            "rent radar": "<strong>Poznań Rent Radar</strong> is a rent price estimator for the Poznań market that scrapes live listings.<br><br>• <strong>The Model & Engineering Choice:</strong> He trained a Random Forest model reaching a validation MAE of ~337 PLN. He specifically chose Random Forest over linear models after benchmarking on log-transformed prices to effectively handle non-linear feature interactions.<br>• <strong>Deployment:</strong> It serves predictions through a FastAPI backend with a Streamlit UI, fully deployed with CI/CD on Railway.<br><br><div class='project-actions'><a href='https://github.com/Olat1337/poznan-rent-radar' target='_blank' class='project-link'>🐙 View Code</a><a href='https://poznan-rent-radar-ui.up.railway.app/' target='_blank' class='project-link'>🚀 Live Demo</a></div>",
+            "rent radar": "<strong>Poznań Rent Radar</strong> is a rent price estimator for the Poznań market that scrapes live listings.<br><br>• <strong>The Model & Engineering Choice:</strong> He trained a Random Forest model reaching a validation MAE of ~337 PLN. He specifically chose Random Forest over linear models after benchmarking on log-transformed prices to effectively handle non-linear feature interactions.<br>• <strong>Deployment:</strong> It serves predictions through a FastAPI backend with a Streamlit UI, fully deployed with CI/CD on Railway.<br><br><div class='project-actions'><a href='https://poznan-rent-radar-ui.up.railway.app/' target='_blank' class='project-link'>🚀 Live Demo</a><a href='https://github.com/Olat1337/poznan-rent-radar' target='_blank' class='project-link'>🐙 View Code</a></div>",
             
             "poker": "<strong>Poker Tournament Judge</strong> is offline RAG application with streamlit Web UI interface and an async Telegram bot that answers rule disputes based on the official TDA rulebook.<br><br>• <strong>The Stack:</strong> Built using LangChain, Llama 3, and ChromaDB.<br>• <strong>Engineering Choice:</strong> He selected local inference via Ollama over API-based models to keep the system fully offline and free of per-request costs. This means all responses are strictly grounded in retrieved rule citations with absolute privacy.<br><br><div class='project-actions'><a href='https://github.com/Olat1337/poker-judge' target='_blank' class='project-link'>🐙 View Code</a></div>",
             
@@ -352,15 +375,23 @@
             "contact": "Want to talk about that 2026/2027 internship?<br><br>Drop him an email at <strong>kyrylo.kudrevych@gmail.com</strong> or call <strong>+48 532 629 018</strong>.<br>You can also click the LinkedIn or Email buttons at the top of the page!"
         };
 
-        const chatHistory = document.getElementById('chat-history');
+        const chatWindow = document.getElementById('chat-window');
+        const chatInner = document.getElementById('chat-inner');
         const userInput = document.getElementById('user-input');
 
         function appendMessage(sender, text) {
             const msgDiv = document.createElement('div');
             msgDiv.className = `message ${sender}`;
             msgDiv.innerHTML = text.replace(/\n/g, '<br>');
-            chatHistory.appendChild(msgDiv);
-            chatHistory.scrollTop = chatHistory.scrollHeight;
+            
+            chatInner.appendChild(msgDiv);
+            
+            requestAnimationFrame(() => {
+                chatWindow.scrollTo({
+                    top: chatWindow.scrollHeight,
+                    behavior: 'smooth'
+                });
+            });
         }
 
         function findAnswer(query) {
@@ -386,7 +417,7 @@
 
             setTimeout(() => {
                 const response = findAnswer(text);
-                appendMessage('bot', `<strong>Kyrylo's AI:</strong><br><br>${response}`);
+                appendMessage('bot', `<strong style="color: var(--accent-primary);">Kyrylo's AI:</strong><br><br>${response}`);
             }, 400); 
         }
 
