@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kyrylo Kudrevych | Bioinformatics Student | Data & Software Engineering</title>
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💬</text></svg>">
     
     <style>
         :root {
@@ -25,6 +25,10 @@
             --btn-bg: #0d0614;
         }
 
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         body, html {
             margin: 0;
             padding: 0;
@@ -39,7 +43,7 @@
 
         header {
             background-color: transparent;
-            padding: 2rem;
+            padding: 1rem 2rem;
             border-bottom: 1px solid rgba(46, 29, 71, 0.3);
             display: flex;
             justify-content: space-between;
@@ -106,8 +110,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
+            padding: 1rem 2rem;
             overflow: hidden;
+            min-height: 0;
         }
 
         .chat-panel {
@@ -118,7 +123,8 @@
             border-radius: 16px;
             width: 100%;
             max-width: 1000px;
-            height: 75vh; 
+            height: 100%;
+            max-height: 900px;
             display: flex;
             flex-direction: column;
             overflow: hidden; 
@@ -128,11 +134,12 @@
         .chat-history {
             flex: 1 1 0; 
             overflow-y: auto;
+            scrollbar-gutter: stable;
             position: relative;
         }
 
         .chat-history-inner {
-            padding: 2rem;
+            padding: 1rem 1.5rem;
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
@@ -140,10 +147,10 @@
 
         .message {
             flex: 0 0 auto;
-            max-width: 85%;
-            padding: 1.2rem;
+            max-width: 95%;
+            padding: 1rem;
             border-radius: 12px;
-            line-height: 1.6;
+            line-height: 1.5;
             font-size: 0.95rem;
             letter-spacing: 0.2px;
         }
@@ -194,7 +201,7 @@
 
         .suggestions {
             flex: 0 0 auto;
-            padding: 1rem 2rem 1.5rem 2rem;
+            padding: 0.5rem 2rem 1rem 2rem;
             display: flex;
             flex-wrap: wrap;
             gap: 0.8rem;
@@ -220,7 +227,7 @@
 
         .input-area {
             flex: 0 0 auto;
-            padding: 1.5rem 2rem;
+            padding: 1rem 2rem;
             border-top: 1px solid var(--border-color);
             display: flex;
             gap: 1rem;
@@ -290,9 +297,9 @@
                 justify-content: center;
             }
             .main-container { padding: 1rem; }
-            .chat-panel { height: 85vh; }
+            .chat-panel { height: 100%; }
             .chat-history-inner { padding: 1rem; }
-            .message { max-width: 95%; }
+            .message { max-width: 100%; }
             .suggestions {
                 padding: 0 1rem 1rem 1rem;
                 justify-content: center;
@@ -362,9 +369,9 @@
         const knowledgeBase = {
             "skills": "Kyrylo doesn't just collect logos; he actually builds with these:<br><br>• <strong>Programming:</strong> Python, SQL <br>• <strong>Data & ML:</strong> Scikit-Learn, PyTorch, Pandas, NumPy, Matplotlib, Seaborn <br>• <strong>AI & LLM:</strong> LangChain, ChromaDB, Ollama, HuggingFace <br>• <strong>Backend & DevOps:</strong> FastAPI, Streamlit, Docker, Git, Linux<br><br>He focuses heavily on building scalable backends and deploying ML models.",
             
-            "rent radar": "<strong>Poznań Rent Radar</strong> is a rent price estimator for the Poznań market that scrapes live listings.<br><br>• <strong>The Model & Engineering Choice:</strong> He trained a Random Forest model reaching a validation MAE of ~337 PLN. He specifically chose Random Forest over linear models after benchmarking on log-transformed prices to effectively handle non-linear feature interactions.<br>• <strong>Deployment:</strong> It serves predictions through a FastAPI backend with a Streamlit UI, fully deployed with CI/CD on Railway.<br><br><div class='project-actions'><a href='https://poznan-rent-radar-ui.up.railway.app/' target='_blank' class='project-link'>🚀 Live Demo</a><a href='https://github.com/Olat1337/poznan-rent-radar' target='_blank' class='project-link'>🐙 View Code</a></div>",
+            "rent radar": "<strong>Poznań Rent Radar</strong> is a rent price estimator for the Poznań market that scrapes live listings.<br><br>• <strong>The Model & Engineering Choice:</strong> He trained a Random Forest model reaching a validation MAE of ~337 PLN. He specifically chose Random Forest over linear models after benchmarking on log-transformed prices to effectively handle non-linear feature interactions.<br>• <strong>Deployment:</strong> It serves predictions through a FastAPI backend with a Streamlit UI, fully deployed with CI/CD on Railway.<br><br><div class='project-actions'><a href='https://poznan-rent-radar-ui.up.railway.app/' target='_blank' class='project-link'>🚀 Live Demo</a><a href='https://github.com/Olat1337/poznan-rent-radar' target='_blank' class='project-link'>🔗 View Code</a></div>",
             
-            "poker": "<strong>Poker Tournament Judge</strong> is offline RAG application with streamlit Web UI interface and an async Telegram bot that answers rule disputes based on the official TDA rulebook.<br><br>• <strong>The Stack:</strong> Built using LangChain, Llama 3, and ChromaDB.<br>• <strong>Engineering Choice:</strong> He selected local inference via Ollama over API-based models to keep the system fully offline and free of per-request costs. This means all responses are strictly grounded in retrieved rule citations with absolute privacy.<br><br><div class='project-actions'><a href='https://github.com/Olat1337/poker-judge' target='_blank' class='project-link'>🐙 View Code</a></div>",
+            "poker": "<strong>Poker Tournament Judge</strong> is offline RAG application with streamlit Web UI interface and an async Telegram bot that answers rule disputes based on the official TDA rulebook.<br><br>• <strong>The Stack:</strong> Built using LangChain, Llama 3, and ChromaDB.<br>• <strong>Engineering Choice:</strong> He selected local inference via Ollama over API-based models to keep the system fully offline and free of per-request costs. This means all responses are strictly grounded in retrieved rule citations with absolute privacy.<br><br><div class='project-actions'><a href='https://github.com/Olat1337/poker-judge' target='_blank' class='project-link'>🔗 View Code</a></div>",
             
             "experience": "He gets hands-on experience through university research groups:<br><br>• <strong>GHOST Data Science Section:</strong> <br>&nbsp&nbsp&nbsp&nbspBuilds classification and regression models using Scikit-Learn and PyTorch, and <br>&nbsp&nbsp&nbsp&nbspwrites data-cleaning validation scripts in Python (Pandas/NumPy) and SQL.<br>• <strong>KNBI Bioinformatics Association:</strong><br>&nbsp&nbsp&nbsp&nbspApplies Scikit-Learn algorithms to biological datasets and visualizes high-dimensional <br>&nbsp&nbsp&nbsp&nbspdata using Matplotlib and Seaborn.",
             
