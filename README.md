@@ -1,4 +1,4 @@
-# 🤖 Interactive Portfolio
+# 💬 Interactive Portfolio
 
 An interactive personal portfolio designed as an AI chat interface. Instead of scrolling through a traditional static resume, visitors can "chat" with a rule-based simulation of my credentials to learn about my skills, projects, and work experience.
 
@@ -7,7 +7,7 @@ An interactive personal portfolio designed as an AI chat interface. Instead of s
 ## 🎯 Project Overview
 This project serves as my digital business card. As a Bioinformatics student at Poznan University of Technology focused on machine learning and data application development, I wanted a portfolio that reflects my technical interests. I built a responsive, dark-themed chatbot UI that uses pattern matching to map user queries directly to my actual resume details, providing a fast and engaging way to view my background and my search for a 2026/2027 Data/SWE Internship.
 
-## ✨ Key Features
+## 💡 Key Features
 * **Rule-Based Chatbot:** Instantly parses user input to return relevant information about my tech stack, education, and specific projects (like the Poker RAG AI or Poznań Rent Radar).
 * **Interactive UI:** Includes quick-action suggestion chips to guide visitors who aren't sure what to ask.
 * **Zero Dependencies:** Built entirely from scratch without heavy frontend frameworks to ensure instant load times.
